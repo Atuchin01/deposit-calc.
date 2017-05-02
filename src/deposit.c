@@ -24,5 +24,15 @@ if ((b > 0) && (b <= 30))
         c*=1.15;	
 }
 return c;
+};
+
+int error (int t, int s){
+if ((t <= 0) || (t > 365) || (s<10000))
+	printf ("VVedite coretnie dannie");
+	else {
+	printf (" Resultat vklada: ");
+	printf ("%i", vklad(s,t));
+	}
+	return 0;
 }
 

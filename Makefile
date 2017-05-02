@@ -1,24 +1,28 @@
-CFLAGS = -Wall -Werror -MP -MMD
-SOURCES = src/main.c src/deposit.c
-OBJECTS = $(SOURCES:.c=.o)
-.PH: clean all deposit-calc
+# переменная CC указывает компилятор, используемый для сборки
+CC=gcc
 
-Program :
-	make bin/deposit-calc
+# в переменной CFLAGS лежат флаги, которые передаются компилятору
+CFLAGS=-c -Wall -Werror
+SOURCES = main.c deposit.c
+EXECUTABLE = main
+OBJECTS = $(SOURCES: .c=.o)
+DIR = build
+DUR = bin
+DAR = src
 
-bin/deposit-calc : build/main.o build/deposit.o
-	gcc build/main.o build/deposit.o -o bin/deposit-calc $(CFLAGS)
+all: $(DUR)/$(EXECUTABLE)
 
-build/main.o : src/main.c src/deposit.h
-	gcc -c src/main.c -o build/main.o $(CFLAGS)
+$(DUR)/$(EXECUTABLE): $(DIR)/main.o $(DIR)/deposit.o
+	@if [ ! -d $(DUR) ] ; then echo "creating $(DUR)"; mkdir bin; fi
+	$(CC) $(DIR)/main.o $(DIR)/deposit.o -o $(DUR)/$(EXECUTABLE)
 
-build/deposit.o : src/deposit.c src/deposit.h
-	gcc -c src/deposit.c -o build/deposit.o $(CFLAGS)
-	
-clean :
-	rm -rf build/*.d 
-	rm -rf build/*.o
-	rm bin/deposit-calc
-	@echo "All files have been cleaned."
-	
--include build/*.d
+$(DIR)/main.o: $(DAR)/main.c
+	@if [ ! -d $(DIR) ] ; then echo "creating $(DIR)"; mkdir build; fi
+	$(CC) $(CFLAGS) -c $(DAR)/main.c -o $(DIR)/main.o
+
+$(DIR)/deposit.o: $(DAR)/deposit.c
+	@if [ ! -d $(DIR) ] ; then echo "creating $(DIR)"; mkdir build; fi
+	$(CC) $(CFLAGS) -c $(DAR)/deposit.c -o $(DIR)/deposit.o
+.PHONY : clean
+clean:
+	rm -rf build/*.o bin/main
