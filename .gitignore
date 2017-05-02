@@ -1,6 +1,3 @@
-# ignore following files
 *.o
-.lab2.c.swp
-lab2.c~ 
-#lab2.c#
-main
+.~
+!Makefile
