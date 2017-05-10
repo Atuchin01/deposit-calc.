@@ -27,12 +27,11 @@ return c;
 };
 
 int error (int t, int s){
-if ((t <= 0) || (t > 365) || (s<10000))
-	printf ("VVedite coretnie dannie");
-	else {
-	printf (" Resultat vklada: ");
-	printf ("%i", vklad(s,t));
-	}
-	return 0;
+	if ((t <= 0) || (t > 365) || (s<10000))
+		printf ("VVedite coretnie dannie!\n");
+
+    else 
+	   printf ("Resultat vklada: %i\n", vklad(s,t));
+    return 0;
 }
 
