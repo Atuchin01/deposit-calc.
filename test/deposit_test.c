@@ -3,7 +3,7 @@
 
 CTEST(sumLess100k, dateBetween0and30) {
 	int result = vklad(1000,30);
-	int extended = 900;
+	int extended = 100;
 	ASSERT_EQUAL(result, extended);
 }
 
@@ -45,6 +45,6 @@ CTEST(sumMore100, dateBetween121and240) {
 
 CTEST(sumMore100, dateBetween241and365) {
 	int result = vklad(374000,365);
-	int extended = 430100;
+	int extended = 430099;
 	ASSERT_EQUAL(result, extended);
 }
