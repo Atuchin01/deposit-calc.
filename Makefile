@@ -19,8 +19,7 @@ BT = bin
 DT = test
 
 
-all: $(DUR)/$(EXECUTABLE) test
-
+all: $(DUR)/$(EXECUTABLE)
 $(DUR)/$(EXECUTABLE): $(DIR)/main.o $(DIR)/deposit.o
 	@if [ ! -d $(DUR) ] ; then echo "creating $(DUR)"; mkdir bin; fi
 	$(CC) $(DIR)/main.o $(DIR)/deposit.o -o $(DUR)/$(EXECUTABLE)
