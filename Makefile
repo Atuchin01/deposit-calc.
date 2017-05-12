@@ -19,10 +19,10 @@ BT = bin
 DT = test
 
 
-all: $(DUR)/$(EXECUTABLE)
+all: $(DUR)/$(EXECUTABLE) test
 $(DUR)/$(EXECUTABLE): $(DIR)/main.o $(DIR)/deposit.o
 	@if [ ! -d $(DUR) ] ; then echo "creating $(DUR)"; mkdir bin; fi
-	$(CC) $(DIR)/main.o $(DIR)/deposit.o -o $(DUR)/$(EXECUTABLE)
+	$(CC) $(DIR)/main.o $(DIR)/deposit.o -o $(DUR)/$(EXECUTABLE);
 
 $(DIR)/main.o: $(DAR)/main.c
 	@if [ ! -d $(DIR) ] ; then echo "creating $(DIR)"; mkdir build; mkdir build/src; fi
@@ -35,6 +35,8 @@ $(DIR)/deposit.o: $(DAR)/deposit.c
 
 
 test: $(BT)/$(EXECUTABLE_TEST)
+	@./$(BT)/$(EXECUTABLE_TEST)
+
 
 
 $(BUT)/main.o: $(DT)/main.c
@@ -53,8 +55,7 @@ $(BT)/$(EXECUTABLE_TEST): $(BUT)/main.o $(BUT)/deposit_test.o $(BUT)/validation_
 	@if [ ! -d $(BT) ] ; then echo "creating $(BT)"; mkdir bin; fi
 	$(CC) $(BUT)/main.o $(BUT)/deposit_test.o $(BUT)/validation_test.o $(DIR)/deposit.o -o $(BT)/$(EXECUTABLE_TEST)
 
-	./$(BT)/$(EXECUTABLE_TEST)
-
 .PHONY : clean test
+	 
 clean:
 	rm -rf build/src/*.o build/test/*.o bin/*
