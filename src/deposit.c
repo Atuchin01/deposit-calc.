@@ -10,7 +10,7 @@ if ((b > 0) && (b <= 30))
         c*=1.02;
         if ((b > 120) && (b <= 240)) 
         c*=1.06;
-          ((b > 240) && (b <= 365)) 
+        if ((b > 240) && (b <= 365)) 
         c*=1.12;	
 }
 else {
@@ -26,7 +26,7 @@ if ((b > 0) && (b <= 30))
 return c;
 };
 
-int err (int t, int s){
+int error (int t, int s){
 	if ((t <= 0) || (t > 365) || (s<10000))
 		printf ("VVedite coretnie dannie!\n");
 
