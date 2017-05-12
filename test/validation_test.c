@@ -27,12 +27,12 @@ CTEST(validationInput, Sum10000dateLessNull) {
 
 CTEST(validationInput, Sum10000date0) {
 	int result = error(10000,0);
-	int extended = 1;
+	int extended = 0;
 	ASSERT_EQUAL(result, extended);
 }
 
 CTEST(validationInput, Sum10000date365) {
-	int result = error(10000,365);
-	int extended = 1;
+	int result = error(10000,366);
+	int extended = 0;
 	ASSERT_EQUAL(result, extended);
 }

@@ -35,8 +35,6 @@ $(DIR)/deposit.o: $(DAR)/deposit.c
 
 
 test: $(BT)/$(EXECUTABLE_TEST)
-	@./$(BT)/$(EXECUTABLE_TEST)
-
 
 
 $(BUT)/main.o: $(DT)/main.c
